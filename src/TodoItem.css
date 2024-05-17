@@ -1,0 +1,45 @@
+.todo-item {
+    display: flex;
+    align-items: center;
+    background: #edeef0;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.todo-item-p {
+    margin: 24px 0 24px 24px;
+    width: calc(100% - 120px);
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+.todo-item-p--complete {
+    text-decoration: line-through;
+}
+
+.icon {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    width: 48px;
+}
+
+.icon-check {
+    left: 12px;
+}
+
+.icon-check--inactive {
+    filter: grayscale(100%);
+}
+
+.icon-delete {
+    transition: 300ms;
+    filter: grayscale(1);
+}
+
+.icon-delete:hover {
+    filter: hue-rotate(0deg);
+}

@@ -1,0 +1,27 @@
+.create-todo-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-todo-button-text {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.create-todo-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+
+    transform: rotate(0);
+    transition: .3s ease;
+}
+
+.create-todo-button:hover {
+    transform: rotate(224deg);
+}
