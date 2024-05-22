@@ -8,7 +8,7 @@ import { TodoItem } from "./TodoItem";
 import { CreateTodoButton } from "./CreateTodoButton";
 
 const defaultTodos = [
-  { text: "Entrenar", completed: false },
+  { text: "Entrenar", completed: true },
   { text: "Armar un Lego", completed: false },
   { text: "Preparar la exposición de GSTM", completed: true },
   { text: "Jugar Far Cry 5", completed: false },
