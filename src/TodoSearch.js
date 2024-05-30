@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import searchIcon from "./assets/search-icon.png";
 import "./TodoSearch.css";
 
-const TodoSearch = () => {
-  const [todoQuery, setTodoQuery] = useState("");
+const TodoSearch = ({ todoQuery, setTodoQuery }) => {
 
   // * ¿Qué es el estado?
   /*
