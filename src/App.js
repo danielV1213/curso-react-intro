@@ -39,17 +39,25 @@ function App() {
     return todoText.includes(queryText);
   });
 
-  // *Manejo de completado y finalización de TODO's.
-  const toggleTodoCompleted = (text) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.text === text ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
+  // *Manejo de completado y eliminación de TODO's.
+  const completeTodo = (text) => {
+    // Create a copy of the original TODOs array.
+    const newTodos = [...todos];
+    // Get the index of the TODO which "text" property matches with the passed text.
+    const todoIndex = newTodos.findIndex((todo) => todo.text === text);
+    // Set the "completed" property of the selected TODO to the opposite value so it gets checked or unchecked.
+    newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
+    setTodos(newTodos);
   };
 
   const deleteTodo = (text) => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.text !== text));
+    // Create a copy of the original TODOs array.
+    const newTodos = [...todos];
+    // Get the index of the TODO which "text" property matches with the passed text.
+    const todoIndex = newTodos.findIndex((todo) => todo.text === text);
+    // Cut the array from the index
+    newTodos.splice(todoIndex, 1);
+    setTodos(newTodos);
   };
 
   return (
@@ -64,8 +72,8 @@ function App() {
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
-            toggleTodoCompleted={toggleTodoCompleted}
-            deleteTodo={deleteTodo}
+            onComplete={() => completeTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
           />
         ))}
       </TodoList>
