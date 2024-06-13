@@ -7,15 +7,7 @@ import { TodoList } from "./TodoList";
 import { TodoItem } from "./TodoItem";
 import { CreateTodoButton } from "./CreateTodoButton";
 import { useState } from "react";
-
-const defaultTodos = [
-  { text: "Entrenar tren inferior", completed: true },
-  { text: "Gestionar proceso de grado", completed: false },
-  { text: "Preparar el almuerzo", completed: true },
-  { text: "Activar tarjeta de débito", completed: false },
-];
-
-// Función usada para quitar las tildes de los TODO´s que las tengan y así permitir búsquedas con estos.
+// Función usada para quitar las tildes de los TODO's que las tengan y así permitir búsquedas con estos.
 function normalizeText(text) {
   return text
     .normalize("NFD")
@@ -24,8 +16,18 @@ function normalizeText(text) {
 }
 
 function App() {
+  const localStorageTodos = localStorage.getItem("TODOS");
+  let parsedTodos;
+
+  if (!localStorageTodos) {
+    localStorage.setItem("TODOS", JSON.stringify([]));
+    parsedTodos = [];
+  } else {
+    parsedTodos = JSON.parse(localStorageTodos);
+  }
+
   // Seteamos los TODO's por defecto para contar con un "placeholder" en el estado.
-  const [todos, setTodos] = useState(defaultTodos);
+  const [todos, setTodos] = useState(parsedTodos);
   const [todoQuery, setTodoQuery] = useState("");
 
   // *Estados derivados: estos estados surgen de estados que ya han sido previamente declarados.
@@ -39,6 +41,12 @@ function App() {
     return todoText.includes(queryText);
   });
 
+  // Función para actualizar el estado de los TODOs en el localStorage y en el estado de React.
+  const updateTodos = (newTodos) => {
+    localStorage.setItem("TODOS", JSON.stringify(newTodos));
+    setTodos(newTodos);
+  };
+
   // *Manejo de completado y eliminación de TODO's.
   const completeTodo = (text) => {
     // Create a copy of the original TODOs array.
@@ -47,7 +55,7 @@ function App() {
     const todoIndex = newTodos.findIndex((todo) => todo.text === text);
     // Set the "completed" property of the selected TODO to the opposite value so it gets checked or unchecked.
     newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
-    setTodos(newTodos);
+    updateTodos(newTodos);
   };
 
   const deleteTodo = (text) => {
@@ -57,7 +65,7 @@ function App() {
     const todoIndex = newTodos.findIndex((todo) => todo.text === text);
     // Cut the array from the index
     newTodos.splice(todoIndex, 1);
-    setTodos(newTodos);
+    updateTodos(newTodos);
   };
 
   return (

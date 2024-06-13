@@ -6,7 +6,7 @@ const TodoCounter = ({ total, completed }) => {
   return (
     <div className='todo-header'>
       <h1>
-        Has completado {completed} de {total} TODOs
+        { completed < total ? `Has completado ${completed} de ${total} TODOs` : 'Has completado TODO!' }
       </h1>
       <img src={taskList} height='50px' alt='todo-header-icon' />
     </div>
