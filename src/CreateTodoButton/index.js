@@ -1,6 +1,6 @@
 import React from "react";
 import "./CreateTodoButton.css";
-import addTodoIcon from "./assets/add-icon.png"
+import addTodoIcon from "../assets/add-icon.png"
 
 const CreateTodoButton = () => {
   return (

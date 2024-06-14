@@ -1,7 +1,7 @@
 import React from "react";
 import "./TodoItem.css";
-import checkIcon from "./assets/check-icon.png";
-import deleteIcon from "./assets/delete-icon.png";
+import checkIcon from "../assets/check-icon.png";
+import deleteIcon from "../assets/delete-icon.png";
 
 const TodoItem = ({ text, completed, onComplete, onDelete }) => {
   return (

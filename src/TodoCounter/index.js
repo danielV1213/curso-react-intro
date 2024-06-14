@@ -1,6 +1,6 @@
 import React from "react";
 import "./TodoCounter.css";
-import taskList from "./assets/document.png";
+import taskList from "../assets/document.png";
 
 const TodoCounter = ({ total, completed }) => {
   return (
