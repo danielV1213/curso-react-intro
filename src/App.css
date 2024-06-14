@@ -20,4 +20,6 @@ body {
     padding: 25px;
     width: 640px;
     border-radius: 10px;
+    max-height: 75vh;
+    overflow-y: auto;
 }

@@ -2,6 +2,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 15px auto;
+    background-color: #ffffff;
+    width: fit-content;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .create-todo-button-text {
