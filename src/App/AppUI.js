@@ -9,45 +9,41 @@ import { TodoSearch } from "../TodoSearch";
 import { TodoList } from "../TodoList";
 import { TodoItem } from "../TodoItem";
 import { CreateTodoButton } from "../CreateTodoButton";
+import { TodoContext } from "../TodoContext";
 
-const AppUI = ({
-  loading,
-  error,
-  completedTodos,
-  todoQuery,
-  searchedTodos,
-  totalTodos,
-  completeTodo,
-  deleteTodo,
-  setTodoQuery,
-}) => {
+const AppUI = () => {
   return (
     <div>
       <div className='container'>
-        <TodoCounter completed={completedTodos} total={totalTodos} />
-        <TodoSearch todoQuery={todoQuery} setTodoQuery={setTodoQuery} />
+        <TodoCounter />
+        <TodoSearch />
 
-        <TodoList loading={loading}>
-          {/* Caso de carga */}
-          {loading && <img src={loadingSpinner} alt='loading-spinner' />}
-          {/* Caso de error */}
-          {error && <p>¡Hubo un error!</p>}
-          {/* Caso de que no existan TODO's aún */}
-          {!loading && searchedTodos.length === 0 && (
-            <p>No has creado ningún TODO 🙁</p>
+        {/* El consumer recibe como parámetros las propiedades que se van a compartir y retorna una render function que devuelve los componentes a renderizar con sus respectivas propiedades */}
+        <TodoContext.Consumer>
+          {({ loading, error, searchedTodos, completeTodo, deleteTodo }) => (
+            <TodoList>
+              {/* Caso de carga */}
+              {loading && <img src={loadingSpinner} alt='loading-spinner' />}
+              {/* Caso de error */}
+              {error && <p>¡Hubo un error!</p>}
+              {/* Caso de que no existan TODO's aún */}
+              {!loading && searchedTodos.length === 0 && (
+                <p>No has creado ningún TODO 🙁</p>
+              )}
+
+              {/* Iteración sobre el arreglo de TODO's, esté vacío o no */}
+              {searchedTodos.map((todo) => (
+                <TodoItem
+                  key={todo.text}
+                  text={todo.text}
+                  completed={todo.completed}
+                  onComplete={() => completeTodo(todo.text)}
+                  onDelete={() => deleteTodo(todo.text)}
+                />
+              ))}
+            </TodoList>
           )}
-
-          {/* Iteración sobre el arreglo de TODO's, esté vacío o no */}
-          {searchedTodos.map((todo) => (
-            <TodoItem
-              key={todo.text}
-              text={todo.text}
-              completed={todo.completed}
-              onComplete={() => completeTodo(todo.text)}
-              onDelete={() => deleteTodo(todo.text)}
-            />
-          ))}
-        </TodoList>
+        </TodoContext.Consumer>
       </div>
 
       <CreateTodoButton />
