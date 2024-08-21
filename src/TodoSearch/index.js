@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import searchIcon from "../assets/search-icon.png";
+import { TodoContext } from "../TodoContext";
 import "./TodoSearch.css";
 
-const TodoSearch = ({ todoQuery, setTodoQuery }) => {
+const TodoSearch = () => {
+  const { setTodoQuery, todoQuery } = useContext(TodoContext);
 
   // * ¿Qué es el estado?
   /*

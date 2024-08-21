@@ -6,7 +6,6 @@ import { useLocalStorage } from "./useLocalStorage";
 El contexto permite que se cree un estado global para todos los componentes, evitando que se tenga que enviar información de padres a hijos explícitamente por medio de props. Esto también evita que se forme el famoso "prop drilling", que es cuando se empiezan a pasar propiedades por varios niveles del árbol de componentes, generando un envío de propiedades demasiado complejo.
 */
 
-// const {Provider, Consumer} = createContext();
 const TodoContext = createContext();
 
 function TodoProvider({ children }) {

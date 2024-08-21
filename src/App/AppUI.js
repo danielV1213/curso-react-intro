@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useContext } from "react";
 import "./App.css";
 import loadingSpinner from "../assets/loading-spinner.svg";
 // Importar usando los componentes nombrados de manera predeterminada
@@ -12,6 +11,8 @@ import { CreateTodoButton } from "../CreateTodoButton";
 import { TodoContext } from "../TodoContext";
 
 const AppUI = () => {
+  const { loading, error, searchedTodos, completeTodo, deleteTodo } = useContext(TodoContext);
+
   return (
     <div>
       <div className='container'>
@@ -19,31 +20,27 @@ const AppUI = () => {
         <TodoSearch />
 
         {/* El consumer recibe como parámetros las propiedades que se van a compartir y retorna una render function que devuelve los componentes a renderizar con sus respectivas propiedades */}
-        <TodoContext.Consumer>
-          {({ loading, error, searchedTodos, completeTodo, deleteTodo }) => (
-            <TodoList>
-              {/* Caso de carga */}
-              {loading && <img src={loadingSpinner} alt='loading-spinner' />}
-              {/* Caso de error */}
-              {error && <p>¡Hubo un error!</p>}
-              {/* Caso de que no existan TODO's aún */}
-              {!loading && searchedTodos.length === 0 && (
-                <p>No has creado ningún TODO 🙁</p>
-              )}
-
-              {/* Iteración sobre el arreglo de TODO's, esté vacío o no */}
-              {searchedTodos.map((todo) => (
-                <TodoItem
-                  key={todo.text}
-                  text={todo.text}
-                  completed={todo.completed}
-                  onComplete={() => completeTodo(todo.text)}
-                  onDelete={() => deleteTodo(todo.text)}
-                />
-              ))}
-            </TodoList>
+        <TodoList>
+          {/* Caso de carga */}
+          {loading && <img src={loadingSpinner} alt='loading-spinner' />}
+          {/* Caso de error */}
+          {error && <p>¡Hubo un error!</p>}
+          {/* Caso de que no existan TODO's aún */}
+          {!loading && searchedTodos.length === 0 && (
+            <p>No has creado ningún TODO 🙁</p>
           )}
-        </TodoContext.Consumer>
+
+          {/* Iteración sobre el arreglo de TODO's, esté vacío o no */}
+          {searchedTodos.map((todo) => (
+            <TodoItem
+              key={todo.text}
+              text={todo.text}
+              completed={todo.completed}
+              onComplete={() => completeTodo(todo.text)}
+              onDelete={() => deleteTodo(todo.text)}
+            />
+          ))}
+        </TodoList>
       </div>
 
       <CreateTodoButton />
