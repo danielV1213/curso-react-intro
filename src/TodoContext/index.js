@@ -16,6 +16,7 @@ function TodoProvider({ children }) {
     error,
   } = useLocalStorage("TODOS", []);
   const [todoQuery, setTodoQuery] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   // Función usada para quitar las tildes de los TODO's que las tengan y así permitir búsquedas con estos.
   function normalizeText(text) {
@@ -36,7 +37,16 @@ function TodoProvider({ children }) {
     return todoText.includes(queryText);
   });
 
-  // *Manejo de completado y eliminación de TODO's.
+  const addTodo = (text) => {
+    const newTodos = [...todos];
+
+    newTodos.push({
+      text,
+      completed: false,
+    });
+    updateTodos(newTodos);
+  };
+
   const completeTodo = (text) => {
     // Create a copy of the original TODOs array.
     const newTodos = [...todos];
@@ -66,9 +76,12 @@ function TodoProvider({ children }) {
         todoQuery,
         searchedTodos,
         totalTodos,
+        openModal,
         completeTodo,
         deleteTodo,
         setTodoQuery,
+        setOpenModal,
+        addTodo,
       }}
     >
       {children}
