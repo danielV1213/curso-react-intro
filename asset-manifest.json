@@ -1,15 +1,19 @@
 {
   "files": {
-    "main.css": "/curso-react-intro/static/css/main.bbce1e86.css",
-    "main.js": "/curso-react-intro/static/js/main.84e7f53e.js",
+    "main.css": "/curso-react-intro/static/css/main.dd65d13c.css",
+    "main.js": "/curso-react-intro/static/js/main.d60fe9aa.js",
+    "static/media/search-icon.png": "/curso-react-intro/static/media/search-icon.74128081a53cad129e96.png",
+    "static/media/check-icon.png": "/curso-react-intro/static/media/check-icon.a24e66f257df2ec74434.png",
+    "static/media/document.png": "/curso-react-intro/static/media/document.367e98bd6fff7a5a009b.png",
+    "static/media/delete-icon.png": "/curso-react-intro/static/media/delete-icon.3c662b752278fc52f408.png",
+    "static/media/add-icon.png": "/curso-react-intro/static/media/add-icon.da6fb4627fa39a335792.png",
     "index.html": "/curso-react-intro/index.html",
-    "static/media/delete.svg": "/curso-react-intro/static/media/delete.7018c4465589031bd51c8efbe21df9ca.svg",
-    "static/media/check.svg": "/curso-react-intro/static/media/check.e9a948bba52a34123d2ed7aeda0ea495.svg",
-    "main.bbce1e86.css.map": "/curso-react-intro/static/css/main.bbce1e86.css.map",
-    "main.84e7f53e.js.map": "/curso-react-intro/static/js/main.84e7f53e.js.map"
+    "static/media/loading-spinner.svg": "/curso-react-intro/static/media/loading-spinner.82403a16f318d157e1e8076de93e0366.svg",
+    "main.dd65d13c.css.map": "/curso-react-intro/static/css/main.dd65d13c.css.map",
+    "main.d60fe9aa.js.map": "/curso-react-intro/static/js/main.d60fe9aa.js.map"
   },
   "entrypoints": [
-    "static/css/main.bbce1e86.css",
-    "static/js/main.84e7f53e.js"
+    "static/css/main.dd65d13c.css",
+    "static/js/main.d60fe9aa.js"
   ]
 }
